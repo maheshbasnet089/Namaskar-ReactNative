@@ -11,12 +11,7 @@ function App() {
   return (
     <View style={styles.container}>
 
-    <Text style={styles.textkolagi} >Hello World</Text>
-    <Button title='Submit' onPress={popupDeka} />
-    <TextInput placeholder='Type Here .....' onChangeText={setText} />
-    <Image style={styles.imageStyle}  source={{
-      uri :'https://play-lh.googleusercontent.com/m8E7ypNV9nRzrKJ_fsF0AjKSevtJYHxvkSKtEM5GQ1h40GX5BMVd0YS_oZ4plRzpSw=w600-h300-pc0xffffff-pd'
-    }} />
+    <Text className="text-blue-500 text-[50px]">Hello world</Text>
     </View>
   );
 }
