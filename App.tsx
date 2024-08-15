@@ -1,34 +1,22 @@
 
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput, Image } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
+
+const {Screen,Navigator} = createNativeStackNavigator() 
+
 
 function App() {
- const popupDeka = ()=>{
-  Alert.alert("Button was clicked")
- }
- const [text,setText] = useState('')
- 
-  return (
-    <View style={styles.container}>
 
-    <Text className="text-blue-500 text-[50px]">Hello world</Text>
-    </View>
+
+  return (
+    <NavigationContainer>
+      <Navigator>
+        <Screen name='Home' component={HomeScreen} />
+      </Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  textkolagi : {
-    fontSize : 50, 
-    color : 'red'
-  }, 
-  container : {
-    padding : 20
-  }, 
-  imageStyle : {
-    width: 50, 
-    height : 50
-  }
-})
 
 
 export default App;
