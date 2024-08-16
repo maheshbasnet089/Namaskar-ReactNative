@@ -1,11 +1,38 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
-import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { ChangeEvent, useState } from 'react'
+import { NativeSyntheticEvent, ScrollView, Text, TextInput, TextInputChangeEventData, TouchableOpacity, View } from 'react-native'
 import {NativeStackNavigationProp} from '@react-navigation/native-stack'
 import { NavigationProp } from '../../types/global'
+import { useAppDispatch } from '../../store/hooks'
+import { registerUser } from '../../store/userSlice'
 
 const Register = () => {
     const navigation = useNavigation<NavigationProp>()
+    const dispatch = useAppDispatch()
+    const [data,setData] = useState({
+      firstName : '', 
+      lastName : '', 
+      email : '', 
+      address : '', 
+      password : '', 
+      role:'seller'
+
+    })
+    const handleSubmit = ()=>{
+      if(data){
+        dispatch(registerUser(data))
+      }
+
+    }
+    const handleChange = (name:string,value:string):void=>{
+    
+      setData({
+        ...data,
+        [name] : value
+      })
+      console.log(data,name,value)
+    }
+
     
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
@@ -22,7 +49,7 @@ const Register = () => {
             <TextInput
               placeholder='First Name'
               placeholderTextColor={'gray'}
-
+              onChangeText={(text)=>handleChange('firstName',text)}
 
             />
           </View>
@@ -30,6 +57,8 @@ const Register = () => {
             <TextInput
               placeholder='Last Name'
               placeholderTextColor={'gray'}
+              onChangeText={(text)=>handleChange('lastName',text)}
+
        
             />
           </View>
@@ -37,14 +66,16 @@ const Register = () => {
             <TextInput
               placeholder='Email'
               placeholderTextColor={'gray'}
-     
+              onChangeText={(text)=>handleChange('email',text)}
+
             />
           </View>
           <View className="bg-gray-200 p-3 rounded-2xl w-full">
             <TextInput
               placeholder='Address'
               placeholderTextColor={'gray'}
- 
+              onChangeText={(text)=>handleChange('address',text)}
+
             />
           </View>
           <View className="bg-gray-200 p-3 rounded-2xl w-full">
@@ -52,6 +83,7 @@ const Register = () => {
               placeholder='Password'
               placeholderTextColor={'gray'}
               secureTextEntry
+              onChangeText={(text)=>handleChange('password',text)}
 
             />
           </View>
@@ -73,6 +105,7 @@ const Register = () => {
           </View>
           <View className="w-full">
             <TouchableOpacity className="w-full bg-green-600 p-3 rounded-2xl mb-3" 
+            onPress={handleSubmit}
             >
               <Text className="text-xl font-bold text-white text-center">Create Account</Text>
             </TouchableOpacity>

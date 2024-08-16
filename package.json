@@ -12,12 +12,15 @@
   "dependencies": {
     "@react-navigation/native": "*",
     "@react-navigation/native-stack": "*",
+    "@reduxjs/toolkit": "^2.2.7",
+    "axios": "^1.7.4",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-native": "0.74.4",
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
-    "react-native-vector-icons": "^10.1.0"
+    "react-native-vector-icons": "^10.1.0",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
