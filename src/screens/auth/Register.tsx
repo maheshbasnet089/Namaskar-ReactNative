@@ -5,34 +5,29 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack'
 import { NavigationProp } from '../../types/global'
 import { useAppDispatch } from '../../store/hooks'
 import { registerUser } from '../../store/userSlice'
+import { Role, UserData } from '../../types/user.types'
 
-const Register = () => {
-    const navigation = useNavigation<NavigationProp>()
-    const dispatch = useAppDispatch()
-    const [data,setData] = useState({
-      firstName : '', 
-      lastName : '', 
-      email : '', 
-      address : '', 
-      password : '', 
-      role:'seller'
-
-    })
-    const handleSubmit = ()=>{
-      if(data){
-        dispatch(registerUser(data))
-      }
-
-    }
-    const handleChange = (name:string,value:string):void=>{
-    
-      setData({
-        ...data,
-        [name] : value
-      })
-      console.log(data,name,value)
-    }
-
+const Register = () => {    
+  const navigation = useNavigation<NavigationProp>()
+  const dispatch = useAppDispatch()
+const [data,setData] = useState<UserData>({
+  address : '', 
+  email : '', 
+  role :Role.Consumer, 
+  password : '', 
+  firstName : '', 
+  lastName : ''
+}
+)
+const handleChange = (name:string,value:string):void=>{
+  setData({
+    ...data,
+    [name] : value
+})
+}
+const handleSubmit = ()=>{
+  dispatch(registerUser(data))
+}
     
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
@@ -49,7 +44,7 @@ const Register = () => {
             <TextInput
               placeholder='First Name'
               placeholderTextColor={'gray'}
-              onChangeText={(text)=>handleChange('firstName',text)}
+             onChangeText={(text)=>handleChange('firstName',text)}
 
             />
           </View>
@@ -92,6 +87,7 @@ const Register = () => {
             <View className="flex flex-row space-x-4">
               <TouchableOpacity
                 className={`p-2 rounded-md  bg-gray-200`}
+
               >
                 <Text className="font-semibold">Seller</Text>
               </TouchableOpacity>
@@ -112,7 +108,7 @@ const Register = () => {
           </View>
           <View className="flex-row justify-center">
             <Text>Already have an account?</Text>
-            <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+            <TouchableOpacity>
               <Text  className="text-green-600 font-semibold"> Sign In</Text>
             </TouchableOpacity>
           </View>

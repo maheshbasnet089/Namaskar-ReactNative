@@ -4,7 +4,7 @@ import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import { NavigationProp } from '../../types/global'
 
 const Login = () => {
-    const navigation = useNavigation<NavigationProp>()
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
       <View className="bg-white-300 h-full w-full flex justify-center items-center">
@@ -31,13 +31,13 @@ const Login = () => {
               />
             </View>
             <View className="w-full">
-              <TouchableOpacity className="w-full bg-green-600 p-3 rounded-2xl mb-3" onPress={()=>navigation.navigate('Home')}>
+              <TouchableOpacity className="w-full bg-green-600 p-3 rounded-2xl mb-3">
                 <Text className="text-xl font-bold text-white text-center">Login</Text>
               </TouchableOpacity>
             </View>
             <View className="flex-row justify-center">
               <Text>Don't have an account?</Text>
-              <TouchableOpacity onPress={()=>navigation.navigate('Register')}>
+              <TouchableOpacity>
                 <Text className="text-green-600 font-semibold"> Sign Up</Text>
               </TouchableOpacity>
             </View>

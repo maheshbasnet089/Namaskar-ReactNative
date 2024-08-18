@@ -7,3 +7,9 @@ export type RootStackNavigatorParamsList = {
     Login : undefined
   }
 export type NavigationProp = NativeStackNavigationProp<RootStackNavigatorParamsList>
+
+export enum Status{
+  Loading = 'loading', 
+  Success = 'success', 
+  Error = 'error'
+}
